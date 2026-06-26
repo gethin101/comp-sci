@@ -1,0 +1,6 @@
+Adafruit CircuitPython 9.2.9 on 2025-09-07; Raspberry Pi Pico 2 W with rp2350a
+Board ID:raspberry_pi_pico2_w
+UID:1AAEEA6D06E01A12
+MAC:2C:CF:67:E0:A7:6A
+boot.py output:
+USB drive enabled

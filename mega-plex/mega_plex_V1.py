@@ -1,46 +1,64 @@
+from dataclasses import dataclass
 import time
 
-customer_LoggedIn = False
-admin_LoggedIn = False
-login_attempt = 0
+customerLoggedin = False
+adminLoggedin = False
+admin_login = ["admin","admin123"]
 
-admin_login = ["admin","pass123"]
+@dataclass
+class Film:
+    movie:str
+    price:float
+    category:str
+    tickets:int
 
-login = str(input("Enter username ")).lower()
+spiderman = Film("Spiderman", 9.99 , "Action", 60)
+starwars = Film("Star Wars", 5.00 , "Science Fiction", 45)
+LOTR = Film("Lord of the Rings", 6.50 , "Fantasy", 20)
 
-if login == "admin":
-    password = str(input("Enter password ")).lower()
-    
+films = [spiderman, starwars, LOTR]
+
+
+login = str(input("Enter account username ")).lower()
+if login in admin_login:
+    password = str(input("Enter admin password    ")).lower()
     if password in admin_login:
-        admin_LoggedIn = True
-        print("\nLogged in as admin ")
-    elif password not in admin_login:
-        while login_attempt < 3:
-            print("\n--------------------------------")
-            login_attempt += 1
-            print(f"Incorrect password.  Attempt: {login_attempt}")
-            time.sleep(2)
-            print("--------------------------------")
-
-            if login_attempt < 3:
-                password = str(input("\nEnter password ")).lower()
-
-            if password in admin_login:
-                print("\nLogged in as admin ")
-                admin_LoggedIn = True
-                break
-    if login_attempt == 3:
-        print("\nToo many login attempts ")
-        
-else:
-    confirm_login = str(input(f"\nAre you sure you want to log in as {login}?  ( y / n ) "))
-    if confirm_login == "y": 
-        customer_LoggedIn = True
-        print(f"\nCustomer logged in as {login}")
-    elif confirm_login =="n":
-        print("\nCustomer login rejected")
+        print()
+        print("Admin logged in ")
+        adminLoggedin = True
         time.sleep(1)
-        quit()          
-          
+    else:
+        print("Incorrect admin login ")
+        time.sleep(1)
+elif login not in admin_login:
+    print()
+    print(f"Customer logged in as {login}")
+    customerLoggedin = True
+    time.sleep(1)
+
+if adminLoggedin:
+    print()
+    print("                     Current Movies: ")
+    print("-----------------------------------------------------------------------")
+    for film in films:
+        print(f"- {film.movie} | £{film.price:.2f} | {film.category} | {film.tickets} tickets")
+    print("-----------------------------------------------------------------------")
+    print()
+
+    admin_choice = str(input("Which movie would you like to change? ")).lower()
+    edit_film = "none"
+    for film in films:
+        if film.movie.lower() == admin_choice:
+            edit_film = film
+            break
+    if edit_film == "none":
+        print("This isn't a movie you can edit ")
 
 
+
+
+
+
+
+    
+    
