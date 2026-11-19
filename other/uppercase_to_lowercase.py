@@ -1,0 +1,11 @@
+word = input()
+print(f"Original word: {word} ")
+new_word = ""
+
+for i in range(len(word)):
+    if ord(word[i]) > 91 or ord(word[i]) < 64:
+        new_word += word[i]
+    elif ord(word[i]) < 91 or ord(word[i]) > 64:
+        new_word += chr((ord(word[i]) + 32))
+       
+print(f"New word: {new_word} ")
